@@ -1,0 +1,39 @@
+{% extends 'main.html'%}
+{% block crud_container %}
+<section class="container-fluid">
+    <form method="post" action="/">
+        <div class="input-group mb-3">
+            <input type="text" name="username" value="{{username}}" class="form-control"
+            placeholder="Add new username" aria-label="Add username" aria-describedby="button-addon2">
+            <input type="text" name="age" value="{{age}}" class="form-control"
+            placeholder="Add age" aria-label="Add age" aria-describedby="button-addon2">
+            <button>
+                Add
+            </button>
+        </div>
+    </form>
+</section>
+{% if users == [] %}
+<h2> {{"NOBODY HERE"}} </h2>
+{% elif user %}
+<article class="card container fluid">
+    <br>
+    <h2>ID: {{user.id}} </h2>
+    <h3>Name: {{user.username}} </h3>
+    <h3>Age: {{user.age}} </h3>
+</article>
+
+{% else %}
+<section class="container-fluid">
+    <h2 align="center"> Users </h2>
+    <br>
+    <div class="card">
+        <ul class="list-group list-group-flush">
+            {% for user in users %}
+            <li class="list-group-item"> {{user.id}} <a href="/user/{{user.id}}">{{user.username}} </a> </li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>
+{% endif %}
+{% endblock %}
